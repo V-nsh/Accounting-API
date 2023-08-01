@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 import lombok.RequiredArgsConstructor;
 
 import com.accounting.api.entity.PurchaseBill;
+import com.accounting.api.entity.PurchaseCycle;
 import com.accounting.api.service.PurchaseBillService;
+import com.accounting.api.service.PurchaseCycleService;
 
 @RestController
 @RequestMapping("/purchase-bill")
@@ -24,6 +26,7 @@ import com.accounting.api.service.PurchaseBillService;
 public class PurchaseBillController {
     
     private final PurchaseBillService purchaseBillService;
+    private final PurchaseCycleService purchaseCycleService;
 
     @GetMapping()
     public ResponseEntity<?> getAllPurchaseBill() {
@@ -53,6 +56,10 @@ public class PurchaseBillController {
         try {
             PurchaseBill newPurchaseBill = purchaseBillService.createPurchaseBill(purchaseBill);
             if (newPurchaseBill != null) {
+                PurchaseCycle purchaseCycle = purchaseCycleService.createPurchaseCycle(newPurchaseBill);
+                if(purchaseCycle == null){
+                    return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+                }
                 return new ResponseEntity<>(newPurchaseBill, HttpStatus.CREATED);
             } else {
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
