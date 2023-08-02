@@ -8,6 +8,8 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDate;
+
 @Entity
 @Data
 @Getter
@@ -21,5 +23,5 @@ public class PurchaseCycle {
     @PrimaryKeyJoinColumn
     private PurchaseBill purchaseBill;
 
-    private String settledDate;
+    private LocalDate settledDate;
 }

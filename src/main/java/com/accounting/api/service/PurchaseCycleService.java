@@ -1,6 +1,8 @@
 package com.accounting.api.service;
 
 import java.util.List;
+import java.io.*;
+import java.time.LocalDate;
 
 import org.springframework.stereotype.Service;
 
@@ -18,15 +20,11 @@ public class PurchaseCycleService {
 
     // we can have a view where we show the bill with due date, each bill will have a button to settle the bill
     // when the button is clicked, we will call this method
-    public void settlePurchaseBill(Long purchaseBillId, String settledDate) {
-        // get the purchase bill by id
-        // get the purchase cycle by purchase bill
-        // set the settled date of purchase cycle to current date
-        // save the purchase cycle
+    public void settlePurchaseBill(Long purchaseBillId) {
         PurchaseBill theBill = purchaseBillService.getPurchaseBillById(purchaseBillId);
         PurchaseCycle theCycle = purchaseCycleRepository.findByPurchaseBillId(purchaseBillId);
         if (theBill != null) {
-            theCycle.setSettledDate(settledDate);
+            theCycle.setSettledDate(LocalDate.now());
             purchaseCycleRepository.save(theCycle);
         }
     }
@@ -34,7 +32,8 @@ public class PurchaseCycleService {
     // a method to create the purchase cycle, this cycle will be created WITH the bill behind the scenes.
     public PurchaseCycle createPurchaseCycle(PurchaseBill purchaseBill) {
         PurchaseCycle purchaseCycle = new PurchaseCycle();
-        purchaseCycle.setPurchaseBill(purchaseBill);
+        purchaseCycle.setPurchaseBillId(purchaseBill.getPurchaseBillId());
+        purchaseCycle.setSettledDate(null);
         return purchaseCycleRepository.save(purchaseCycle);
     }
 
@@ -44,5 +43,9 @@ public class PurchaseCycleService {
 
     public List<PurchaseCycle> getAllPurchaseCycles() {
         return purchaseCycleRepository.findAll();
+    }
+
+    public void deletePurchaseCycle(Long purchaseBillId) {
+        purchaseCycleRepository.deleteById(purchaseBillId);
     }
 }

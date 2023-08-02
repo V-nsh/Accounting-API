@@ -86,8 +86,12 @@ public class PurchaseBillController {
     @DeleteMapping("/{purchaseBillId}")
     public ResponseEntity<?> destroyPurchaseBill(@PathVariable Long purchaseBillId) {
         try {
-            purchaseBillService.deletePurchaseBill(purchaseBillId);
-            return new ResponseEntity<>(HttpStatus.OK);
+            if(purchaseBillService.deletePurchaseBill(purchaseBillId)){
+                purchaseCycleService.deletePurchaseCycle(purchaseBillId);
+                return new ResponseEntity<>(HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

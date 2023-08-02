@@ -37,7 +37,12 @@ public class PurchaseBillService {
         }
     }
 
-    public void deletePurchaseBill(Long purchaseBillId) {
-        purchaseBillRepository.deleteById(purchaseBillId);
+    public Boolean deletePurchaseBill(Long purchaseBillId) {
+        try {
+            purchaseBillRepository.deleteById(purchaseBillId);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 }
