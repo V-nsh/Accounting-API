@@ -37,7 +37,7 @@ public class PurchaseBillController {
         }
     }
     
-    @GetMapping("/{id}")
+    @GetMapping("/{purchaseBillId}")
     public ResponseEntity<?> getOnePurchaseBill(@PathVariable Long purchaseBillId) {
         try {
             PurchaseBill purchaseBill = purchaseBillService.getPurchaseBillById(purchaseBillId);
@@ -58,6 +58,8 @@ public class PurchaseBillController {
             if (newPurchaseBill != null) {
                 PurchaseCycle purchaseCycle = purchaseCycleService.createPurchaseCycle(newPurchaseBill);
                 if(purchaseCycle == null){
+                    // if creating purchase cycle fails, delete the purchase bill
+                    purchaseBillService.deletePurchaseBill(newPurchaseBill.getPurchaseBillId());
                     return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
                 }
                 return new ResponseEntity<>(newPurchaseBill, HttpStatus.CREATED);
