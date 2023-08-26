@@ -52,7 +52,7 @@ public class SaleCycleController {
      * Put request: /sale-cycle/{SaleBillId}
      * settle sale bill by sale bill id.
      */
-    @PutMapping("/{SaleBillId}")
+    @PutMapping("/settleSaleBill/{SaleBillId}")
     public ResponseEntity<?> settleSaleBill(@PathVariable Long SaleBillId) {
         try {
             SaleCycleService.settleSaleBill(SaleBillId);

@@ -23,4 +23,5 @@ public class SaleCycle {
     private SaleBill saleBill;
 
     private LocalDate settledDate;
+    private boolean isSettled;
 }

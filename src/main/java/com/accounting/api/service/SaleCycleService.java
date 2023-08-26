@@ -23,6 +23,7 @@ public class SaleCycleService {
         SaleCycle theCycle = SaleCycleRepository.findBySaleBillId(SaleBillId);
         if (theBill != null) {
             theCycle.setSettledDate(LocalDate.now());
+            theCycle.setSettled(true);
             SaleCycleRepository.save(theCycle);
         }
     }
@@ -32,6 +33,7 @@ public class SaleCycleService {
         SaleCycle SaleCycle = new SaleCycle();
         SaleCycle.setSaleBillId(SaleBill.getSaleBillId());
         SaleCycle.setSettledDate(null);
+        SaleCycle.setSettled(false);
         return SaleCycleRepository.save(SaleCycle);
     }
 

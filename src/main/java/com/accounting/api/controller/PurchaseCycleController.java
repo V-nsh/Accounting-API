@@ -52,7 +52,7 @@ public class PurchaseCycleController {
      * Put request: /purchase-cycle/{purchaseBillId}
      * settle purchase bill by purchase bill id.
      */
-    @PutMapping("/{purchaseBillId}")
+    @PutMapping("/settlePurchaseBill/{purchaseBillId}")
     public ResponseEntity<?> settlePurchaseBill(@PathVariable Long purchaseBillId) {
         try {
             purchaseCycleService.settlePurchaseBill(purchaseBillId);

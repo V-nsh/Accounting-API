@@ -24,4 +24,5 @@ public class PurchaseCycle {
     private PurchaseBill purchaseBill;
 
     private LocalDate settledDate;
+    private boolean isSettled;
 }

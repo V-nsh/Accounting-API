@@ -24,6 +24,7 @@ public class PurchaseCycleService {
         PurchaseCycle theCycle = purchaseCycleRepository.findByPurchaseBillId(purchaseBillId);
         if (theBill != null) {
             theCycle.setSettledDate(LocalDate.now());
+            theCycle.setSettled(true);
             purchaseCycleRepository.save(theCycle);
         }
     }
@@ -33,6 +34,7 @@ public class PurchaseCycleService {
         PurchaseCycle purchaseCycle = new PurchaseCycle();
         purchaseCycle.setPurchaseBillId(purchaseBill.getPurchaseBillId());
         purchaseCycle.setSettledDate(null);
+        purchaseCycle.setSettled(false);
         return purchaseCycleRepository.save(purchaseCycle);
     }
 
