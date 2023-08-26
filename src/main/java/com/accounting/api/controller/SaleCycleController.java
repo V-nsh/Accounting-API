@@ -21,6 +21,10 @@ public class SaleCycleController {
 
     private final SaleCycleService SaleCycleService;
 
+    /*
+     * Get request: /sale-cycle
+     * get all sale cycles.
+     */
     @GetMapping()
     public ResponseEntity<?> getAllSaleCycle() {
         try {
@@ -30,6 +34,10 @@ public class SaleCycleController {
         }
     }
 
+    /*
+     * Get request: /sale-cycle/{SaleBillId}
+     * get one sale cycle by sale bill id.
+     */
     @GetMapping("/{SaleBillId}")
     public ResponseEntity<?> getOneSaleCycle(@PathVariable Long SaleBillId) {
         try {
@@ -40,6 +48,10 @@ public class SaleCycleController {
         }
     }
 
+    /*
+     * Put request: /sale-cycle/{SaleBillId}
+     * settle sale bill by sale bill id.
+     */
     @PutMapping("/{SaleBillId}")
     public ResponseEntity<?> settleSaleBill(@PathVariable Long SaleBillId) {
         try {

@@ -21,6 +21,10 @@ public class PurchaseCycleController {
 
     private final PurchaseCycleService purchaseCycleService;
 
+    /*
+     * Get request: /purchase-cycle
+     * get all purchase cycles.
+     */
     @GetMapping()
     public ResponseEntity<?> getAllPurchaseCycle() {
         try {
@@ -30,6 +34,10 @@ public class PurchaseCycleController {
         }
     }
 
+    /*
+     * Get request: /purchase-cycle/{purchaseBillId}
+     * get one purchase cycle by purchase bill id.
+     */
     @GetMapping("/{purchaseBillId}")
     public ResponseEntity<?> getOnePurchaseCycle(@PathVariable Long purchaseBillId) {
         try {
@@ -40,6 +48,10 @@ public class PurchaseCycleController {
         }
     }
 
+    /*
+     * Put request: /purchase-cycle/{purchaseBillId}
+     * settle purchase bill by purchase bill id.
+     */
     @PutMapping("/{purchaseBillId}")
     public ResponseEntity<?> settlePurchaseBill(@PathVariable Long purchaseBillId) {
         try {

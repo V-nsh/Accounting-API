@@ -28,6 +28,10 @@ public class PurchaseBillController {
     private final PurchaseBillService purchaseBillService;
     private final PurchaseCycleService purchaseCycleService;
 
+    /*
+     * Get request: /purchase-bill
+     * get all purchase bills.
+     */
     @GetMapping()
     public ResponseEntity<?> getAllPurchaseBill() {
         try {
@@ -37,6 +41,11 @@ public class PurchaseBillController {
         }
     }
     
+
+    /*
+     * Get request: /purchase-bill/{purchaseBillId}
+     * get one purchase bill by purchase bill id.
+     */
     @GetMapping("/{purchaseBillId}")
     public ResponseEntity<?> getOnePurchaseBill(@PathVariable Long purchaseBillId) {
         try {
@@ -51,6 +60,10 @@ public class PurchaseBillController {
         }
     }
     
+    /*
+     * Post request: /purchase-bill
+     * create a purchase bill.
+     */
     @PostMapping()
     public ResponseEntity<?> createPurchaseBill(@RequestBody PurchaseBill purchaseBill) {
         try {
@@ -71,6 +84,10 @@ public class PurchaseBillController {
         }
     }
     
+    /*
+     * Put request: /purchase-bill/{purchaseBillId}
+     * update a purchase bill by purchase bill id.
+     */
     @PutMapping("/{purchaseBillId}")
     public ResponseEntity<?> updatePurchaseBill(@RequestBody PurchaseBill purchaseBill, @PathVariable Long purchaseBillId) {
         try {
@@ -85,6 +102,10 @@ public class PurchaseBillController {
         }
     }
     
+    /*
+     * Delete request: /purchase-bill/{purchaseBillId}
+     * delete a purchase bill by purchase bill id.
+     */
     @DeleteMapping("/{purchaseBillId}")
     public ResponseEntity<?> destroyPurchaseBill(@PathVariable Long purchaseBillId) {
         try {

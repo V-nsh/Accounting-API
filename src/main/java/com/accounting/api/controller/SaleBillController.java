@@ -28,6 +28,10 @@ public class SaleBillController {
     private final SaleBillService SaleBillService;
     private final SaleCycleService SaleCycleService;
 
+    /*
+     * Get request: /sale-bill
+     * get all sale bills.
+     */
     @GetMapping()
     public ResponseEntity<?> getAllSaleBill() {
         try {
@@ -37,6 +41,10 @@ public class SaleBillController {
         }
     }
     
+    /*
+     * Get request: /sale-bill/{SaleBillId}
+     * get one sale bill by sale bill id.
+     */
     @GetMapping("/{SaleBillId}")
     public ResponseEntity<?> getOneSaleBill(@PathVariable Long SaleBillId) {
         try {
@@ -51,6 +59,10 @@ public class SaleBillController {
         }
     }
     
+    /*
+     * Post request: /sale-bill
+     * create a new sale bill.
+     */
     @PostMapping()
     public ResponseEntity<?> createSaleBill(@RequestBody SaleBill SaleBill) {
         try {
@@ -71,6 +83,10 @@ public class SaleBillController {
         }
     }
     
+    /*
+     * Put request: /sale-bill/{SaleBillId}
+     * update a sale bill by sale bill id.
+     */
     @PutMapping("/{SaleBillId}")
     public ResponseEntity<?> updateSaleBill(@RequestBody SaleBill SaleBill, @PathVariable Long SaleBillId) {
         try {
@@ -85,6 +101,10 @@ public class SaleBillController {
         }
     }
     
+    /*
+     * Delete request: /sale-bill/{SaleBillId}
+     * delete a sale bill by sale bill id.
+     */
     @DeleteMapping("/{SaleBillId}")
     public ResponseEntity<?> destroySaleBill(@PathVariable Long SaleBillId) {
         try {
